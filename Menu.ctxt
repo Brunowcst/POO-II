@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Menu
+comment1.params=
+comment1.target=Menu()
+comment2.params=menuComponent
+comment2.target=void\ add(MenuComponent)
+comment3.params=i
+comment3.target=MenuComponent\ getChild(int)
+comment3.text=\n\ \ \ public\ void\ remove(MenuComponent\ menuComponent){\n\ \ \ \ \ \ \ menuComponents.remove(menuComponent);\n\ \ \ }\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=
+comment5.target=void\ print()
+comment6.params=
+comment6.target=boolean\ isVegetarian()
+comment7.params=
+comment7.target=double\ total()
+numComments=8
