@@ -21,10 +21,21 @@ void main() {
           )
         ),
 
-        bottomNavigationBar: Row(children: const [
-            Text("Texto 1"),
-            Text("Texto 2"),
-            Text("Texto 3")],
+        bottomNavigationBar: Row(children: [
+          ElevatedButton(
+            onPressed: () {
+            }, 
+            child: const Text("Texto 1")),
+
+            ElevatedButton(
+            onPressed: () {
+            }, 
+            child: const Text("Texto 2")),
+
+            ElevatedButton(
+            onPressed: () {
+            }, 
+            child: const Text("Texto 3"))],
         )
       )
     );
