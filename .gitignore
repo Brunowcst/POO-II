@@ -51,3 +51,4 @@ app.*.map.json
 
 # Arquivos do Visual Studio Code
 .vscode/
+receitasDart/flutter_receitas/lib/main.dart
