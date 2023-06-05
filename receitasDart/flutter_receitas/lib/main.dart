@@ -10,10 +10,14 @@ void main() {
         appBar: AppBar(title: const Text("Hello world!!!")),
         body: Center(
           child: Column(
-            children: [
-              const Text("Começando..."),
-              const Text("No meio..."),
-              const Text("Terminando...")]
+            children: const [
+              Text(
+                "Começando...",
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontStyle: FontStyle.italic)),
+              Text("No meio..."),
+              Text("Terminando...")]
           )
         ),
         bottomNavigationBar: const Text("Botão 1"),
