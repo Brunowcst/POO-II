@@ -91,19 +91,25 @@ void main() {
           )
         )
       ),
-      bottomNavigationBar: Row(
-        children: [
-          Expanded(
-              child: IconButton(
-                  icon: const Icon(Icons.home), onPressed: () {})),
-          Expanded(
-              child: IconButton(
-                  icon: const Icon(Icons.person), onPressed: () {})),
-          Expanded(
-              child: IconButton(
-                  icon: const Icon(Icons.settings), onPressed: () {}))
-        ],
-      )
+
+      bottomNavigationBar:
+        BottomNavigationBar(items: const [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home),
+          ),
+
+          BottomNavigationBarItem(
+              label: "Perfil", 
+              icon: Icon(Icons.person)
+          ),
+
+          BottomNavigationBarItem(
+              label: "Settings", 
+              icon: Icon(Icons.settings)
+          )
+        ]
+      ),
     ),
   );
   runApp(app);
