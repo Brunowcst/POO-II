@@ -9,17 +9,17 @@ class DataService {
 
   void carregar(index) {
     var funcoes = [
-      carregarBrenos,
-      carregarTimes,
-      carregarMaterias,
+      getPlanets,
+      getTimes,
+      getDiscipline,
     ];
 
     funcoes[index]();
   }
 
-  void columnBrenos() {
-    keys = ["name", "type", "age"];
-    columns = ["Nome", "Tipo", "Idade"];
+  void columnPlanets() {
+    keys = ["name", "discoveryYear", "distanceFromEarth"];
+    columns = ["Planeta", "Ano de Descoberta", "Distância da Terra"];
   }
 
   void columnTimes() {
@@ -28,23 +28,23 @@ class DataService {
   }
 
   void columnMaterias() {
-    keys = ["matery", "area", "duration"];
+    keys = ["matery", "Área", "duration"];
     columns = ["Matéria", "Área", "Duração"];
   }
 
-  void carregarBrenos() {
-    columnBrenos();
+  void getPlanets() {
+    columnPlanets();
 
     tableStateNotifier.value = [
-      {"name": "Breno", "type": "Bombado", "age": "19"},
-      {"name": "Breno", "type": "Magro", "age": "13"},
-      {"name": "Breno", "type": "Gordo", "age": "17"},
-      {"name": "Breno", "type": "Anoréxico", "age": "15"},
-      {"name": "Breno", "type": "Careca", "age": "20+"}
+      {"name": "Mercury", "discoveryYear": "1631", "distanceFromEarth": "91.7 million miles"},
+      {"name": "Venus", "discoveryYear": "1610", "distanceFromEarth": "25 million miles"},
+      {"name": "Earth", "discoveryYear": "N/A", "distanceFromEarth": "0 miles"},
+      {"name": "Mars", "discoveryYear": "1659", "distanceFromEarth": "48.6 million miles"},
+      {"name": "Jupiter", "discoveryYear": "1610", "distanceFromEarth": "365 million miles"}
     ];
   }
 
-  void carregarTimes() {
+  void getTimes() {
     columnTimes();
 
     tableStateNotifier.value = [
@@ -56,15 +56,15 @@ class DataService {
     ];
   }
 
-  void carregarMaterias() {
+  void  getDiscipline() {
     columnMaterias();
 
     tableStateNotifier.value = [
-      {"matery": "ÁLGEBRA LINEAR", "area": "Exatas", "duration": "60"},
-      {"matery": "POOI", "area": "Programação", "duration": "60"},
-      {"matery": "ESTRUTURA DE DADOS", "area": "Exatas", "duration": "90"},
-      {"matery": "OSM", "area": "Gestão", "duration": "60"},
-      {"matery": "FSI", "area": "Administração", "duration": "60"}
+      {"matery": "ÁLGEBRA LINEAR", "Área": "Exatas", "duration": "60"},
+      {"matery": "POOII", "Área": "Programação", "duration": "60"},
+      {"matery": "ESTRUTURA DE DADOS", "Área": "Exatas", "duration": "90"},
+      {"matery": "OSM", "Área": "Gestão", "duration": "60"},
+      {"matery": "FSI", "Área": "Administração", "duration": "60"}
     ];
   }
 }
@@ -121,8 +121,8 @@ class NewNavBar extends HookWidget {
         currentIndex: state.value,
         items: const [
           BottomNavigationBarItem(
-            label: "Brenos",
-            icon: Icon(Icons.person),
+            label: "Planetas",
+            icon: Icon(Icons.language),
           ),
           BottomNavigationBarItem(
               label: "Times", icon: Icon(Icons.emoji_flags)),
@@ -137,24 +137,39 @@ class DataTableWidget extends StatelessWidget {
   final List<String> columnNames;
   final List<String> propertyNames;
 
-  DataTableWidget(
-      {this.jsonObjects = const [],
-      this.columnNames = const ["Nome", "Estilo", "IBU"],
-      this.propertyNames = const ["name", "style", "ibu"]});
+  DataTableWidget({
+    this.jsonObjects = const [],
+    this.columnNames = const ["Nome", "Estilo", "IBU"],
+    this.propertyNames = const ["matery", "Área", "duration"],
+  });
   @override
   Widget build(BuildContext context) {
     return DataTable(
-        columns: columnNames
-            .map((name) => DataColumn(
-                label: Expanded(
-                    child: Text(name,
-                        style: TextStyle(fontStyle: FontStyle.italic)))))
-            .toList(),
-        rows: jsonObjects
-            .map((obj) => DataRow(
-                cells: propertyNames
-                    .map((propName) => DataCell(Text(obj[propName])))
-                    .toList()))
-            .toList());
+      columns: columnNames
+          .map(
+            (name) => DataColumn(
+              label: Expanded(
+                child: Text(
+                  name,
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+      rows: jsonObjects
+          .map(
+            (obj) => DataRow(
+              cells: propertyNames
+                  .map(
+                    (propName) => DataCell(
+                      Text(obj[propName] ?? ''), // Handle null values gracefully
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+          .toList(),
+    );
   }
 }
